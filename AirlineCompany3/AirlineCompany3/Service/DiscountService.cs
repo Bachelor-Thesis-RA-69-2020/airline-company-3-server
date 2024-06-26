@@ -25,7 +25,7 @@ namespace AirlineCompany3.Service
             {
                 Discount discount = _mapper.Map<Discount>(discountDto);
 
-                Flight flight = _flightRepository.Get(filter: f => f.SerialNumber == discountDto.FlightSerialNumber, includedProperties: "Tickets, Discounts", orElseThrow: true);
+                Flight flight = _flightRepository.Get(filter: f => f.SerialNumber == discountDto.FlightSerialNumber, includedProperties: "Tickets,Discounts", orElseThrow: true);
 
                 flight.AddDiscount(discount);
 
