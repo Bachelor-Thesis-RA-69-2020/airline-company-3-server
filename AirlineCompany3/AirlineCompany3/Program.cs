@@ -20,6 +20,7 @@ builder.Services.AddScoped<IFlightRepository, FlightRepository>();
 builder.Services.AddScoped<IAirportService, AirportService>();
 builder.Services.AddScoped<IFlightService, FlightService>();
 builder.Services.AddScoped<ITicketService, TicketService>();
+builder.Services.AddScoped<IDiscountService, DiscountService>();
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
