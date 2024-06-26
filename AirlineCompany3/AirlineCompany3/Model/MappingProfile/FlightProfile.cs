@@ -14,7 +14,7 @@ namespace AirlineCompany3.Model.MappingProfile
         private void CreateMaps()
         {
             CreateMap<FlightCreationDto, Flight>()
-                .ForMember(dest => dest.TravelTime, opt => opt.MapFrom(src => (int)(src.ScheduledArrival - src.ScheduledDeparture).TotalMinutes)); ;
+                .ForMember(dest => dest.TravelTime, opt => opt.MapFrom(src => (int)(src.ScheduledArrival - src.ScheduledDeparture).TotalMinutes));
         }
     }
 }
