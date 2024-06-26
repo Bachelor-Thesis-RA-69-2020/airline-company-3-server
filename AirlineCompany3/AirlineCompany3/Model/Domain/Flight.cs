@@ -42,10 +42,12 @@ namespace AirlineCompany3.Model.Domain
         [ForeignKey(nameof(EndingPointId))]
         public Airport EndingPoint { get; set; }
         public List<Ticket> Tickets { get; set; }
+        public List<Discount> Discounts { get; set; }
 
         public Flight() : base()
         {
             Tickets = new List<Ticket>();
+            Discounts = new List<Discount>();
         }
 
         public void SetRelation(Airport startingPoint, Airport endingPoint)
