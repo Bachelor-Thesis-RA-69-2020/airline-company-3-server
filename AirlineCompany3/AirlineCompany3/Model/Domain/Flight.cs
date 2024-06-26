@@ -78,10 +78,14 @@ namespace AirlineCompany3.Model.Domain
             }
         }
 
-        //public void AddTickets(List<Ticket> tickets)
-        //{
-        //    Tickets.AddRange(tickets);
-        //}
+        public void AddTickets(List<Ticket> tickets)
+        {
+            foreach (var ticket in tickets)
+            {
+                ticket.Validate();
+            }
+            Tickets.AddRange(tickets);
+        }
 
         //public void AddDiscount(Discount discount)
         //{
