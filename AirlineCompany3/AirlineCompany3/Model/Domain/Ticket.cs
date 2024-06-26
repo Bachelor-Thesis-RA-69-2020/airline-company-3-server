@@ -1,5 +1,6 @@
 ﻿using AirlineCompany3.Models.Domain;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AirlineCompany3.Model.Domain
 {
@@ -16,6 +17,12 @@ namespace AirlineCompany3.Model.Domain
         public FlightClass Type { get; set; }
 
         public bool IsBought { get; set; }
+
+        [Required(ErrorMessage = "Validation: Flight ID is required")]
+        public string FlightId { get; set; }
+
+        [ForeignKey(nameof(FlightId))]
+        public Flight Flight { get; set; }
 
         //public Booking Booking { get; set; }
 
