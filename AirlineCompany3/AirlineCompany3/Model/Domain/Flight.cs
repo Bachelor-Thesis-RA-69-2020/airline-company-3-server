@@ -4,8 +4,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AirlineCompany3.Model.Domain
 {
-    
-    [Table("flights")]
     public class Flight : BaseEntity
     {
         [Required(ErrorMessage = "Validation: Code is required")]
@@ -44,7 +42,7 @@ namespace AirlineCompany3.Model.Domain
         [ForeignKey(nameof(EndingPointId))]
         public Airport EndingPoint { get; set; }
 
-        public Flight()
+        public Flight() : base()
         {
         }
 
