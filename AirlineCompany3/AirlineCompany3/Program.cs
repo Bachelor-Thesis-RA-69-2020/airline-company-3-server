@@ -16,6 +16,7 @@ builder.Services.AddScoped<IAirportRepository, AirportRepository>();
 builder.Services.AddScoped<IFlightRepository, FlightRepository>();
 
 builder.Services.AddScoped<IAirportService, AirportService>();
+builder.Services.AddScoped<IFlightService, FlightService>();
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
