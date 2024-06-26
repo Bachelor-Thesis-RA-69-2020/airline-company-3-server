@@ -27,9 +27,17 @@ namespace AirlineCompany3.Repository.DatabaseContext
                 .WithMany()
                 .HasForeignKey(f => f.EndingPointId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Ticket>()
+                .HasOne(t => t.Flight)
+                .WithMany(f => f.Tickets)
+                .HasForeignKey(t => t.FlightId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
 
         public DbSet<Airport> Airports { get; set; }
         public DbSet<Flight> Flights { get; set; }
+
+        public DbSet<Ticket> Tickets { get; set; }
     }
 }
