@@ -62,6 +62,28 @@ namespace AirlineCompany3.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Tickets",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<float>(type: "real", nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: false),
+                    IsBought = table.Column<bool>(type: "bit", nullable: false),
+                    FlightId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tickets", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Tickets_Flights_FlightId",
+                        column: x => x.FlightId,
+                        principalTable: "Flights",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Flights_EndingPointId",
                 table: "Flights",
@@ -71,11 +93,19 @@ namespace AirlineCompany3.Migrations
                 name: "IX_Flights_StartingPointId",
                 table: "Flights",
                 column: "StartingPointId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tickets_FlightId",
+                table: "Tickets",
+                column: "FlightId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Tickets");
+
             migrationBuilder.DropTable(
                 name: "Flights");
 

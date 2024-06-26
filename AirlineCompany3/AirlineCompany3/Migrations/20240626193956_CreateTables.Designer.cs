@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AirlineCompany3.Migrations
 {
     [DbContext(typeof(ServerDatabaseContext))]
-    [Migration("20240626183810_CreateTables")]
+    [Migration("20240626193956_CreateTables")]
     partial class CreateTables
     {
         /// <inheritdoc />
@@ -112,6 +112,35 @@ namespace AirlineCompany3.Migrations
                     b.ToTable("Flights");
                 });
 
+            modelBuilder.Entity("AirlineCompany3.Model.Domain.Ticket", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FlightId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("IsBought")
+                        .HasColumnType("bit");
+
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FlightId");
+
+                    b.ToTable("Tickets");
+                });
+
             modelBuilder.Entity("AirlineCompany3.Model.Domain.Flight", b =>
                 {
                     b.HasOne("AirlineCompany3.Model.Domain.Airport", "EndingPoint")
@@ -129,6 +158,22 @@ namespace AirlineCompany3.Migrations
                     b.Navigation("EndingPoint");
 
                     b.Navigation("StartingPoint");
+                });
+
+            modelBuilder.Entity("AirlineCompany3.Model.Domain.Ticket", b =>
+                {
+                    b.HasOne("AirlineCompany3.Model.Domain.Flight", "Flight")
+                        .WithMany("Tickets")
+                        .HasForeignKey("FlightId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Flight");
+                });
+
+            modelBuilder.Entity("AirlineCompany3.Model.Domain.Flight", b =>
+                {
+                    b.Navigation("Tickets");
                 });
 #pragma warning restore 612, 618
         }
