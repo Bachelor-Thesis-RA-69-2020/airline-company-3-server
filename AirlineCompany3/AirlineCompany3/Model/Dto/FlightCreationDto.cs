@@ -9,10 +9,10 @@
         public string StartingPointIata{ get; set; }
         public string EndingPointIata { get; set; }
         public int EconomyCount { get; set; }
-        public int EconomyPrice { get; set; }
+        public float EconomyPrice { get; set; }
         public int BusinessCount { get; set; }
-        public int BusinessPrice { get; set; }
+        public float BusinessPrice { get; set; }
         public int FirstCount { get; set; }
-        public int FirstPrice { get; set; }
+        public float FirstPrice { get; set; }
     }
 }
