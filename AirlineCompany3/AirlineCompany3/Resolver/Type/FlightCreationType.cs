@@ -14,11 +14,11 @@ namespace AirlineCompany3.Resolver.Type
             descriptor.Field(f => f.StartingPointIata).Type<NonNullType<StringType>>();
             descriptor.Field(f => f.EndingPointIata).Type<NonNullType<StringType>>();
             descriptor.Field(f => f.EconomyCount).Type<NonNullType<IntType>>();
-            descriptor.Field(f => f.EconomyPrice).Type<NonNullType<IntType>>();
+            descriptor.Field(f => f.EconomyPrice).Type<NonNullType<FloatType>>();
             descriptor.Field(f => f.BusinessCount).Type<NonNullType<IntType>>();
-            descriptor.Field(f => f.BusinessPrice).Type<NonNullType<IntType>>();
+            descriptor.Field(f => f.BusinessPrice).Type<NonNullType<FloatType>>();
             descriptor.Field(f => f.FirstCount).Type<NonNullType<IntType>>();
-            descriptor.Field(f => f.FirstPrice).Type<NonNullType<IntType>>();
+            descriptor.Field(f => f.FirstPrice).Type<NonNullType<FloatType>>();
         }
     }
 }
