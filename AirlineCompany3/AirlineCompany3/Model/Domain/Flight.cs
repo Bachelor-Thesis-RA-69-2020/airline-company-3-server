@@ -19,7 +19,7 @@ namespace AirlineCompany3.Model.Domain
         public DateTime ScheduledArrival { get; set; }
 
         [Required(ErrorMessage = "Validation: Duration in minutes is required")]
-        [Range(1, int.MaxValue, ErrorMessage = "Validation: Duration must be greater than 0")]
+        [Range(1, int.MaxValue, ErrorMessage = "Validation: Travel time must be greater than 0")]
         public int TravelTime { get; set; }
 
         [Required(ErrorMessage = "Validation: Luggage rules are required")]
