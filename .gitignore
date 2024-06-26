@@ -1,0 +1,32 @@
+# Visual Studio / Rider / JetBrains
+.vs/
+/.idea/
+/*.suo
+/*.user
+/*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+[Oo]bj/
+[Bb]in/
+
+# Visual Studio Code
+.vscode/
+
+# NuGet Packages
+*.nuget.props
+*.lock.json
+packages/
+!package-lock.json
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# macOS / Linux specific files
+.DS_Store
