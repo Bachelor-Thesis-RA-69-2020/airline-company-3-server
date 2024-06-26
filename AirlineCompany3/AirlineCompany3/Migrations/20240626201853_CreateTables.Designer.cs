@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AirlineCompany3.Migrations
 {
     [DbContext(typeof(ServerDatabaseContext))]
-    [Migration("20240626193956_CreateTables")]
+    [Migration("20240626201853_CreateTables")]
     partial class CreateTables
     {
         /// <inheritdoc />
@@ -24,6 +24,31 @@ namespace AirlineCompany3.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("AirlineCompany3.Model.Discount", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<float>("DiscountPercentage")
+                        .HasColumnType("real");
+
+                    b.Property<string>("FlightId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("From")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("To")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FlightId");
+
+                    b.ToTable("Discounts");
+                });
 
             modelBuilder.Entity("AirlineCompany3.Model.Domain.Airport", b =>
                 {
@@ -141,6 +166,17 @@ namespace AirlineCompany3.Migrations
                     b.ToTable("Tickets");
                 });
 
+            modelBuilder.Entity("AirlineCompany3.Model.Discount", b =>
+                {
+                    b.HasOne("AirlineCompany3.Model.Domain.Flight", "Flight")
+                        .WithMany("Discounts")
+                        .HasForeignKey("FlightId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Flight");
+                });
+
             modelBuilder.Entity("AirlineCompany3.Model.Domain.Flight", b =>
                 {
                     b.HasOne("AirlineCompany3.Model.Domain.Airport", "EndingPoint")
@@ -173,6 +209,8 @@ namespace AirlineCompany3.Migrations
 
             modelBuilder.Entity("AirlineCompany3.Model.Domain.Flight", b =>
                 {
+                    b.Navigation("Discounts");
+
                     b.Navigation("Tickets");
                 });
 #pragma warning restore 612, 618
