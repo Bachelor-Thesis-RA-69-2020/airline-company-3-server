@@ -13,12 +13,14 @@ namespace AirlineCompany3.Service
         private readonly IMapper _mapper;
         private readonly IFlightRepository _flightRepository;
         private readonly IAirportRepository _airportRepository;
+        private readonly ITicketService _ticketService;
 
-        public FlightService(IMapper mapper, IFlightRepository flightRepository, IAirportRepository airportRepository)
+        public FlightService(IMapper mapper, IFlightRepository flightRepository, IAirportRepository airportRepository, ITicketService ticketService)
         {
             _mapper = mapper;
             _flightRepository = flightRepository;
             _airportRepository = airportRepository;
+            _ticketService = ticketService;
         }
 
         public MessageDto create(FlightCreationDto flightDto)
@@ -32,6 +34,10 @@ namespace AirlineCompany3.Service
                 flight.SetRelation(startingPoint, endingPoint);
 
                 flight.SerialNumber = GenerateSerialNumber(flight);
+
+                TicketPricing pricing = _mapper.Map<TicketPricing>(flightDto);
+                List<Ticket> tickets = _ticketService.GenerateTickets(flight.Id, flight.SerialNumber, pricing);
+                flight.AddTickets(tickets);
 
                 flight.Validate();
                 _flightRepository.Create(flight);
