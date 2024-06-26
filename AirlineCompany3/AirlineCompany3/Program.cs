@@ -13,6 +13,8 @@ builder.Services.AddDbContext<ServerDatabaseContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection")));
 
 builder.Services.AddScoped<IAirportRepository, AirportRepository>();
+builder.Services.AddScoped<IFlightRepository, FlightRepository>();
+
 builder.Services.AddScoped<IAirportService, AirportService>();
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
