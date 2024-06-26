@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using CsvHelper;
 using CsvHelper.Configuration;
 using System.Globalization;
+using AirlineCompany3.Model;
 
 namespace AirlineCompany3.Repository.DatabaseContext
 {
@@ -11,7 +12,6 @@ namespace AirlineCompany3.Repository.DatabaseContext
         public ServerDatabaseContext(DbContextOptions<ServerDatabaseContext> options) : base(options)
         {
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -33,11 +33,17 @@ namespace AirlineCompany3.Repository.DatabaseContext
                 .WithMany(f => f.Tickets)
                 .HasForeignKey(t => t.FlightId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Discount>()
+                .HasOne(d => d.Flight)
+                .WithMany(f => f.Discounts)
+                .HasForeignKey(d => d.FlightId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
 
         public DbSet<Airport> Airports { get; set; }
         public DbSet<Flight> Flights { get; set; }
-
         public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<Discount> Discounts { get; set; }
     }
 }
