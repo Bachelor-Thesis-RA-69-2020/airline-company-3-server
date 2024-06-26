@@ -21,7 +21,7 @@ namespace AirlineCompany3.Service
             _airportRepository = airportRepository;
         }
 
-        public String create(FlightCreationDto flightDto)
+        public MessageDto create(FlightCreationDto flightDto)
         {
             try
             {
@@ -36,11 +36,11 @@ namespace AirlineCompany3.Service
                 flight.Validate();
                 _flightRepository.Create(flight);
 
-                return "Flight created.";
+                return new MessageDto("Flight created.");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return ex.Message;
+                return new MessageDto(ex.Message);
             }
         }
 
@@ -57,4 +57,5 @@ namespace AirlineCompany3.Service
 
             return serialNumber;
         }
+    }
 }

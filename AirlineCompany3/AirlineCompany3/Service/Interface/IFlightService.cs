@@ -4,6 +4,6 @@ namespace AirlineCompany3.Service.Interface
 {
     public interface IFlightService
     {
-        String create(FlightCreationDto flightDto);
+        MessageDto create(FlightCreationDto flightDto);
     }
 }
