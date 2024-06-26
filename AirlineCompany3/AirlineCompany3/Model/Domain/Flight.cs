@@ -1,4 +1,5 @@
 ﻿using AirlineCompany3.Models.Domain;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -87,6 +88,15 @@ namespace AirlineCompany3.Model.Domain
                 ticket.Validate();
             }
             Tickets.AddRange(tickets);
+        }
+
+        public void AddDiscount(Discount discount)
+        {
+            discount.FlightId = Id;
+
+            discount.Validate();
+
+            Discounts.Add(discount);
         }
 
         //public void AddDiscount(Discount discount)
