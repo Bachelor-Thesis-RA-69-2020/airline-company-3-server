@@ -27,8 +27,9 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddGraphQLServer()
                 .AddQueryType<AirportQuery>()
                 .AddType<AirportType>()
-                .AddMutationType<FlightMutation>()
+                .AddMutationType<Mutation>()
                 .AddType<FlightCreationType>()
+                .AddType<DiscountCreationType>()
                 .AddType<MessageType>();
 
 var app = builder.Build();
