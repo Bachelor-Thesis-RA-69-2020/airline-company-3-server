@@ -63,5 +63,12 @@ namespace AirlineCompany3.Repository
 
             _db.SaveChanges();
         }
+
+        public void Update(T entity)
+        {
+            _dbSet.Update(entity);
+
+            _db.SaveChanges();
+        }
     }
 }

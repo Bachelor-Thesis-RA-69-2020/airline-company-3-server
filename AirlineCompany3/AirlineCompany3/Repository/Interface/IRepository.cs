@@ -7,6 +7,7 @@ namespace AirlineCompany3.Repository.Interface
         List<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includedProperties = null);
         T Get(Expression<Func<T, bool>> filter, string? includedProperties = null, bool orElseThrow = false);
         void Create(T entity);
+        void Update(T entity)
     }
 }
 
