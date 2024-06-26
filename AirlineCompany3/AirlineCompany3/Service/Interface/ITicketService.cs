@@ -1,9 +1,8 @@
 ﻿using AirlineCompany3.Model.Domain;
 
-namespace AirlineCompany3.Service.Interface
+namespace AirlineCompany3.Repository.Interface
 {
-    public interface ITicketService
+    public interface ITicketService : IRepository<Ticket>
     {
-        List<Ticket> GenerateTickets(FlightService flight, TicketPricing pricing);
     }
 }
