@@ -60,6 +60,8 @@ namespace AirlineCompany3.Repository
         public void Create(T entity)
         {
             _dbSet.Add(entity);
+
+            _db.SaveChanges();
         }
     }
 }
