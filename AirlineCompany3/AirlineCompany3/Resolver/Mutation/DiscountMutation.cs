@@ -2,9 +2,9 @@
 
 namespace AirlineCompany3.Resolver.Mutation
 {
-    public class DiscountMutation : ObjectType
+    public class DiscountMutation
     {
-        protected override void Configure(IObjectTypeDescriptor descriptor)
+        public static void Configure(IObjectTypeDescriptor descriptor)
         {
             descriptor.Field("CreateDiscount")
                   .Argument("input", a => a.Type<NonNullType<DiscountCreationType>>())

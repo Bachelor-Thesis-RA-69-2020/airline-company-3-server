@@ -2,9 +2,9 @@
 
 namespace AirlineCompany3.Resolver.Mutation
 {
-    public class FlightMutation : ObjectType
+    public class FlightMutation
     {
-        protected override void Configure(IObjectTypeDescriptor descriptor)
+        public static void Configure(IObjectTypeDescriptor descriptor)
         {
             descriptor.Field("CreateFlight")
                   .Argument("input", a => a.Type<NonNullType<FlightCreationType>>())
