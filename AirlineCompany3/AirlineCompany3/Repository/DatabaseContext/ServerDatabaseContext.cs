@@ -15,6 +15,7 @@ namespace AirlineCompany3.Repository.DatabaseContext
         }
 
         public DbSet<Airport> Airports { get; set; }
+        public DbSet<Flight> Flights { get; set; }
 
         private void Initialize()
         {
