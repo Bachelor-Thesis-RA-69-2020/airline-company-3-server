@@ -24,7 +24,10 @@ namespace AirlineCompany3.Model.Domain
         [ForeignKey(nameof(FlightId))]
         public Flight Flight { get; set; }
 
-        //public Booking Booking { get; set; }
+        public string BookingId { get; set; }
+
+        [ForeignKey(nameof(BookingId))]
+        public Booking Booking { get; set; }
 
         public Ticket() : base() 
         {
@@ -37,13 +40,13 @@ namespace AirlineCompany3.Model.Domain
             Type = type;
             IsBought = false;
         }
-        
 
-        //public void Buy(Booking booking)
-        //{
-        //    IsBought = true;
-        //    Booking = booking;
-        //}
+
+        public void Buy(Booking booking)
+        {
+            IsBought = true;
+            Booking = booking;
+        }
     }
 
     public enum FlightClass
