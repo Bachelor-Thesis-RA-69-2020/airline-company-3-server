@@ -8,6 +8,7 @@ namespace AirlineCompany3.Resolver.Query
         protected override void Configure(IObjectTypeDescriptor descriptor)
         {
             AirportQuery.Configure(descriptor);
+            FlightQuery.Configure(descriptor);
         }
     }
 }

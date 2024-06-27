@@ -99,11 +99,6 @@ namespace AirlineCompany3.Model.Domain
             Discounts.Add(discount);
         }
 
-        //public void AddDiscount(Discount discount)
-        //{
-        //    Discounts.Add(discount);
-        //}
-
         //public string BuyTicket(FlightClass flightClass, Booking booking)
         //{
         //    Ticket ticket = Tickets.Find(t => t.Type == flightClass && !t.IsBought);

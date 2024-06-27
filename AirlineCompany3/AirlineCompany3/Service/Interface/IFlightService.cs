@@ -4,7 +4,7 @@ namespace AirlineCompany3.Service.Interface
 {
     public interface IFlightService
     {
-        MessageDto create(FlightCreationDto flightDto);
-        List<FlightDto> search(FlightSearchDto searchFilter);
+        MessageDto Create(FlightCreationDto flightDto);
+        List<FlightDto> Search(FlightSearchDto searchFilter);
     }
 }

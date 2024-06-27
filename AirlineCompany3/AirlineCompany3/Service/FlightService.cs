@@ -25,7 +25,7 @@ namespace AirlineCompany3.Service
             _ticketService = ticketService;
         }
 
-        public MessageDto create(FlightCreationDto flightDto)
+        public MessageDto Create(FlightCreationDto flightDto)
         {
             try
             {
@@ -52,19 +52,22 @@ namespace AirlineCompany3.Service
             }
         }
 
-        List<FlightDto> search(FlightSearchDto searchFilter)
+        public List<FlightDto> Search(FlightSearchDto searchFilter)
         {
-            List<Flight> flights = _flightRepository.GetAll(includedProperties: "Tickets,Discounts");
+            List<Flight> flights = _flightRepository.GetAll(includedProperties: "StartingPoint,EndingPoint,Tickets,Discounts");
 
             if (flights.IsNullOrEmpty())
             {
                 return new List<FlightDto>();
             }
 
-            flights = SearchBySerialNumber(flights, searchFilter.SerialNumber);
-            flights = SearchByDateRange(flights, searchFilter.From, searchFilter.To);
-            flights = SearchByRelation(flights, searchFilter.StartingPointIata, searchFilter.EndingPointIata);
-            flights = SearchByPassengerInformation(flights, searchFilter.FlightClass, searchFilter.PassengerCount);
+            if(searchFilter != null)
+            {
+                flights = SearchBySerialNumber(flights, searchFilter.SerialNumber);
+                flights = SearchByDateRange(flights, searchFilter.From, searchFilter.To);
+                flights = SearchByRelation(flights, searchFilter.StartingPointIata, searchFilter.EndingPointIata);
+                flights = SearchByPassengerInformation(flights, searchFilter.FlightClass, searchFilter.PassengerCount);
+            }
 
             List<FlightDto> flightDtos = _mapper.Map<List<FlightDto>>(flights);
 
@@ -89,10 +92,8 @@ namespace AirlineCompany3.Service
         {
             if (serialNumber != null)
             {
-                return flights;
+                flights = flights.Where(f => f.SerialNumber == serialNumber).ToList();
             }
-
-            flights = flights.Where(f => f.SerialNumber == serialNumber).ToList();
 
             return flights;
         }
@@ -134,7 +135,7 @@ namespace AirlineCompany3.Service
 
         private List<Flight> SearchByPassengerInformation(List<Flight> flights, String flightClass, int passengerCount)
         {
-            if (passengerCount == null)
+            if (passengerCount == null || passengerCount == 0)
             {
                 passengerCount = 1;
             }
@@ -172,7 +173,7 @@ namespace AirlineCompany3.Service
 
         private List<Flight> SearchByFrom(List<Flight> flights, DateTime from)
         {
-            if (from != null)
+            if (from != null && from != DateTime.MinValue)
             {
                 flights = flights.Where(f => f.ScheduledDeparture.CompareTo(from) > 0).ToList();
             }
@@ -181,7 +182,7 @@ namespace AirlineCompany3.Service
 
         private List<Flight> SearchByTo(List<Flight> flights, DateTime to)
         {
-            if (to != null) 
+            if (to != null && to != DateTime.MinValue) 
             { 
                 flights = flights.Where(f => f.ScheduledDeparture.CompareTo(to) < 0).ToList();
             }
