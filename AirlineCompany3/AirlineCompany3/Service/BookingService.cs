@@ -19,7 +19,7 @@ namespace AirlineCompany3.Service
             _flightRepository = flightRepository;
         }
 
-        MessageDto Book(BookingCreationDto bookingDto)
+        public MessageDto Book(BookingCreationDto bookingDto)
         {
             try
             {
