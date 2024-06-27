@@ -90,6 +90,31 @@ namespace AirlineCompany3.Migrations
                     b.ToTable("Airports");
                 });
 
+            modelBuilder.Entity("AirlineCompany3.Model.Domain.Booking", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Passport")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Booking");
+                });
+
             modelBuilder.Entity("AirlineCompany3.Model.Domain.Flight", b =>
                 {
                     b.Property<string>("Id")
@@ -139,6 +164,9 @@ namespace AirlineCompany3.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("BookingId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Code")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -157,6 +185,10 @@ namespace AirlineCompany3.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BookingId")
+                        .IsUnique()
+                        .HasFilter("[BookingId] IS NOT NULL");
 
                     b.HasIndex("FlightId");
 
@@ -195,11 +227,17 @@ namespace AirlineCompany3.Migrations
 
             modelBuilder.Entity("AirlineCompany3.Model.Domain.Ticket", b =>
                 {
+                    b.HasOne("AirlineCompany3.Model.Domain.Booking", "Booking")
+                        .WithOne()
+                        .HasForeignKey("AirlineCompany3.Model.Domain.Ticket", "BookingId");
+
                     b.HasOne("AirlineCompany3.Model.Domain.Flight", "Flight")
                         .WithMany("Tickets")
                         .HasForeignKey("FlightId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Booking");
 
                     b.Navigation("Flight");
                 });

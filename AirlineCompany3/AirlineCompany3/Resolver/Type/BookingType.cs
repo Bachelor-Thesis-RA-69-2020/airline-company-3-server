@@ -10,7 +10,7 @@ namespace AirlineCompany3.Resolver.Type
             descriptor.Field(f => f.FlightSerialNumber).Type<NonNullType<StringType>>();
             descriptor.Field(f => f.FlightClass).Type<NonNullType<StringType>>();
             descriptor.Field(f => f.Email).Type<NonNullType<StringType>>();
-            descriptor.Field(f => f.Passengers).Type<NonNullType<ListType<FloatType>>>();
+            descriptor.Field(f => f.Passengers).Type<NonNullType<ListType<PassengerType>>>();
         }
     }
 }

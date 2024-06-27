@@ -44,7 +44,7 @@ namespace AirlineCompany3.Repository.DatabaseContext
                 .HasOne(t => t.Booking)
                 .WithOne()
                 .HasForeignKey<Ticket>(t => t.BookingId)
-                .IsRequired();
+                .IsRequired(false);
         }
 
         public DbSet<Airport> Airports { get; set; }

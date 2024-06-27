@@ -32,6 +32,21 @@ namespace AirlineCompany3.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Booking",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Passport = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Booking", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Flights",
                 columns: table => new
                 {
@@ -92,11 +107,17 @@ namespace AirlineCompany3.Migrations
                     Price = table.Column<float>(type: "real", nullable: false),
                     Type = table.Column<int>(type: "int", nullable: false),
                     IsBought = table.Column<bool>(type: "bit", nullable: false),
-                    FlightId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    FlightId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    BookingId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tickets", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Tickets_Booking_BookingId",
+                        column: x => x.BookingId,
+                        principalTable: "Booking",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Tickets_Flights_FlightId",
                         column: x => x.FlightId,
@@ -121,6 +142,13 @@ namespace AirlineCompany3.Migrations
                 column: "StartingPointId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Tickets_BookingId",
+                table: "Tickets",
+                column: "BookingId",
+                unique: true,
+                filter: "[BookingId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Tickets_FlightId",
                 table: "Tickets",
                 column: "FlightId");
@@ -134,6 +162,9 @@ namespace AirlineCompany3.Migrations
 
             migrationBuilder.DropTable(
                 name: "Tickets");
+
+            migrationBuilder.DropTable(
+                name: "Booking");
 
             migrationBuilder.DropTable(
                 name: "Flights");
