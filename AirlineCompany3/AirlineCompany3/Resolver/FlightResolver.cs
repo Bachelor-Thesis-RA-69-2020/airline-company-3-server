@@ -11,5 +11,12 @@ namespace AirlineCompany3.Resolver
 
             return Message;
         }
+
+        public List<FlightDto> GetFlights(FlightSearchDto filter, [Service(ServiceKind.Synchronized)] IFlightService flightService)
+        {
+            List<FlightDto> flights = flightService.search(filter);
+
+            return flights;
+        }
     }
 }

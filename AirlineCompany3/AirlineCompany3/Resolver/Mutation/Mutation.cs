@@ -2,7 +2,7 @@
 
 namespace AirlineCompany3.Resolver.Mutation
 {
-    public class Mutation : ObjectType
+    public class Mutation : HotChocolate.Types.ObjectType
     {
         protected override void Configure(IObjectTypeDescriptor descriptor)
         {

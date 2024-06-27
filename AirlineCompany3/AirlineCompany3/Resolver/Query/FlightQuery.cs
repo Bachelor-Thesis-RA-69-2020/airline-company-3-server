@@ -2,13 +2,13 @@
 
 namespace AirlineCompany3.Resolver.Query
 {
-    public class AirportQuery
+    public class FlightQuery
     {
         public static void Configure(IObjectTypeDescriptor descriptor)
         {
-            descriptor.Field("GetAirports")
-                  .Argument("filter", a => a.Type<StringType>().DefaultValue(null))
-                  .ResolveWith<AirportResolver>(r => r.GetAirports(default, default))
+            descriptor.Field("GetFlights")
+                  .Argument("filter", a => a.Type<FlightSearchType>().DefaultValue(null))
+                  .ResolveWith<FlightResolver>(r => r.GetFlights(default, default))
                   .Type<ListType<NonNullType<AirportType>>>();
         }
     }

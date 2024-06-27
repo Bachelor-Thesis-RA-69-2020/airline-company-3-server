@@ -17,7 +17,7 @@ namespace AirlineCompany3.Model.MappingProfile
                 .ForMember(dest => dest.TravelTime, opt => opt.MapFrom(src => (int)(src.ScheduledArrival - src.ScheduledDeparture).TotalMinutes));
 
             CreateMap<Flight, FlightDto>()
-                .ForMember(dest => dest.flightInformation, opt => opt.MapFrom(src => new FlightInformationDto(
+                .ForMember(dest => dest.FlightInformation, opt => opt.MapFrom(src => new FlightInformationDto(
                     src.SerialNumber,
                     src.ScheduledDeparture,
                     src.ScheduledArrival,
@@ -27,7 +27,7 @@ namespace AirlineCompany3.Model.MappingProfile
                     src.EndingPoint.Iata,
                     src.StartingPoint.Name,
                     src.EndingPoint.Name)))
-                .ForMember(dest => dest.flightPrice, opt => opt.MapFrom(src => new FlightPriceDto(
+                .ForMember(dest => dest.FlightPrice, opt => opt.MapFrom(src => new FlightPriceDto(
                     src.GetTicketCountByClass(FlightClass.Economy),
                     src.GetTicketPriceByClass(FlightClass.Economy),
                     src.GetTicketCountByClass(FlightClass.Business),

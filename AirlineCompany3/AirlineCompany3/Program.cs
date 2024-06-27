@@ -25,11 +25,15 @@ builder.Services.AddScoped<IDiscountService, DiscountService>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 builder.Services.AddGraphQLServer()
-                .AddQueryType<AirportQuery>()
-                .AddType<AirportType>()
+                .AddQueryType<Query>()
                 .AddMutationType<Mutation>()
+                .AddType<AirportType>()
                 .AddType<FlightCreationType>()
                 .AddType<DiscountCreationType>()
+                .AddType<FlightSearchType>()
+                .AddType<FlightInformationType>()
+                .AddType<FlightPriceType>()
+                .AddType<FlightType>()
                 .AddType<MessageType>();
 
 var app = builder.Build();
