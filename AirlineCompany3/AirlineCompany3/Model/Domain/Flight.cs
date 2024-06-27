@@ -118,23 +118,23 @@ namespace AirlineCompany3.Model.Domain
         //    return ticket.Code;
         //}
 
-        //public float GetTicketPriceByClass(FlightClass flightClass)
-        //{
-        //    Ticket ticket = Tickets.Find(t => t.Type == flightClass);
+        public float GetTicketPriceByClass(FlightClass flightClass)
+        {
+            Ticket ticket = Tickets.Find(t => t.Type == flightClass);
 
-        //    return ticket?.Price ?? -100;
-        //}
+            return ticket?.Price ?? -100;
+        }
 
-        //public int GetTicketCountByClass(FlightClass flightClass)
-        //{
-        //    return Tickets.Count(t => (flightClass == null || t.Type == flightClass) && !t.IsBought);
-        //}
+        public int GetTicketCountByClass(FlightClass flightClass)
+        {
+            return Tickets.Count(t => (flightClass == null || t.Type == flightClass) && !t.IsBought);
+        }
 
-        //public float GetActiveDiscount()
-        //{
-        //    Discount discount = Discounts.Find(d => d.IsActive);
+        public float GetActiveDiscount()
+        {
+            Discount discount = Discounts.Find(d => d.IsActive());
 
-        //    return discount?.OffValue ?? 0;
-        //}
+            return discount?.DiscountPercentage ?? 0;
+        }
     }
 }
