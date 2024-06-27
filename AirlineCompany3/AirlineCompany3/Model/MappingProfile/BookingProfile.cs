@@ -13,7 +13,7 @@ namespace AirlineCompany3.Model.MappingProfile
 
         private void CreateMaps()
         {
-            CreateMap<BookingDto, List<Booking>>()
+            CreateMap<BookingCreationDto, List<Booking>>()
                 .ConvertUsing((src, dest, context) =>
                 {
                     var bookings = new List<Booking>();

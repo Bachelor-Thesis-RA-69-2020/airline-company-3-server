@@ -5,6 +5,6 @@ namespace AirlineCompany3.Service.Interface
 {
     public interface IBookingService
     {
-        MessageDto Book(BookingDto bookingDto);
+        MessageDto Book(BookingCreationDto bookingDto);
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace AirlineCompany3.Model.Dto
 {
-    public class BookingDto
+    public class BookingCreationDto
     {
         public string FlightSerialNumber { get; set; }
         public string FlightClass { get; set; }
