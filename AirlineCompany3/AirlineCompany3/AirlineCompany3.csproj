@@ -12,6 +12,9 @@
     <PackageReference Include="HotChocolate.AspNetCore" Version="13.9.6" />
     <PackageReference Include="HotChocolate.AspNetCore.Playground" Version="10.5.5" />
     <PackageReference Include="HotChocolate.Data.EntityFramework" Version="13.9.6" />
+    <PackageReference Include="itext7" Version="8.0.4" />
+    <PackageReference Include="itext7.bouncy-castle-adapter" Version="8.0.4" />
+    <PackageReference Include="itext7.pdfhtml" Version="5.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -26,6 +29,8 @@
 
   <ItemGroup>
     <Folder Include="Resources\Data\" />
+    <Folder Include="Resources\Images\" />
+    <Folder Include="Resources\Templates\" />
   </ItemGroup>
 
 </Project>

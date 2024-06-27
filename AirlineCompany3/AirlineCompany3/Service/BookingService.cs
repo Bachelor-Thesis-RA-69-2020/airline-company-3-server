@@ -3,6 +3,7 @@ using AirlineCompany3.Model.Dto;
 using AirlineCompany3.Repository;
 using AirlineCompany3.Repository.Interface;
 using AirlineCompany3.Service.Interface;
+using AirlineCompany3.Utility;
 using AutoMapper;
 using System.Collections.Generic;
 
@@ -11,11 +12,13 @@ namespace AirlineCompany3.Service
     public class BookingService : IBookingService
     {
         private readonly IMapper _mapper;
+        private readonly EmailSender _emailSender;
         private readonly IFlightRepository _flightRepository;
 
-        public BookingService(IMapper mapper, IFlightRepository flightRepository)
+        public BookingService(IMapper mapper, EmailSender emailSender, IFlightRepository flightRepository)
         {
             _mapper = mapper;
+            _emailSender = emailSender;
             _flightRepository = flightRepository;
         }
 
@@ -37,10 +40,10 @@ namespace AirlineCompany3.Service
                 }
 
                 _flightRepository.Update(flight);
-                //PdfGenerator pdfGenerator = new PdfGenerator();
-                //byte[] pdf = pdfGenerator.generateTicketsPDF(flight, flightClass, bookings, ticketCodes);
+                PdfGenerator pdfGenerator = new PdfGenerator();
+                byte[] pdf = pdfGenerator.GenerateTicketsPDF(flight, bookingDto.FlightClass, bookings, ticketCodes);
 
-                //emailSender.sendTicketsEmail(email, pdf);
+                _emailSender.SendTicketsEmailAsync(bookingDto.Email, pdf);
 
                 return new MessageDto("Booking created.");
             }

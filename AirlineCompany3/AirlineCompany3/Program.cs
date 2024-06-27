@@ -8,6 +8,7 @@ using AirlineCompany3.Resolver.Type;
 using Microsoft.EntityFrameworkCore;
 using AirlineCompany3.Resolver.Mutation;
 using AirlineCompany3.Repository.DataInitialization;
+using AirlineCompany3.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,8 @@ builder.Services.AddScoped<IDiscountService, DiscountService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
+builder.Services.AddTransient<EmailSender>();
 
 builder.Services.AddGraphQLServer()
                 .AddQueryType<Query>()
