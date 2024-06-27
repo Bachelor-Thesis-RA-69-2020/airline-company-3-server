@@ -99,19 +99,19 @@ namespace AirlineCompany3.Model.Domain
             Discounts.Add(discount);
         }
 
-        //public string BuyTicket(FlightClass flightClass, Booking booking)
-        //{
-        //    Ticket ticket = Tickets.Find(t => t.Type == flightClass && !t.IsBought);
+        public string BuyTicket(FlightClass flightClass, Booking booking)
+        {
+            Ticket ticket = Tickets.Find(t => t.Type == flightClass && !t.IsBought);
 
-        //    if (ticket == null)
-        //    {
-        //        throw new ArgumentException($"No available {flightClass} tickets.");
-        //    }
+            if (ticket == null)
+            {
+                throw new ArgumentException($"No available {flightClass} tickets.");
+            }
 
-        //    ticket.Buy(booking);
+            ticket.Buy(booking);
 
-        //    return ticket.Code;
-        //}
+            return ticket.Code;
+        }
 
         public float GetTicketPriceByClass(FlightClass flightClass)
         {

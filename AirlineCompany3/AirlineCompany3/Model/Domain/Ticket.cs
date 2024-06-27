@@ -44,6 +44,7 @@ namespace AirlineCompany3.Model.Domain
 
         public void Buy(Booking booking)
         {
+            booking.Validate();
             IsBought = true;
             Booking = booking;
         }
