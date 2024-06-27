@@ -8,6 +8,7 @@ namespace AirlineCompany3.Resolver.Mutation
         {
             DiscountMutation.Configure(descriptor);
             FlightMutation.Configure(descriptor);
+            BookingMutation.Configure(descriptor);
         }
     }
 }

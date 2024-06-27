@@ -35,6 +35,8 @@ builder.Services.AddGraphQLServer()
                 .AddType<FlightInformationType>()
                 .AddType<FlightPriceType>()
                 .AddType<FlightType>()
+                .AddType<PassengerType>()
+                .AddType<BookingType>()
                 .AddType<MessageType>();
 
 var app = builder.Build();
