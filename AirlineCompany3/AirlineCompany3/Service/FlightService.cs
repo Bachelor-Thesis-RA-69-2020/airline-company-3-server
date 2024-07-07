@@ -113,17 +113,17 @@ namespace AirlineCompany3.Service
 
         private List<Flight> SearchByRelation(List<Flight> flights, String startingPoint, String endingPoint)
         {
-            if (startingPoint != null && endingPoint != null && startingPoint == endingPoint)
+            if (!startingPoint.IsNullOrEmpty() && !endingPoint.IsNullOrEmpty() && startingPoint == endingPoint)
             {
                 throw new ArgumentException("Validation: startingPoint and endingPoint cannot be the same.");
             }
 
-            if (startingPoint != null)
+            if (!startingPoint.IsNullOrEmpty())
             {
                 _airportRepository.Get(a => a.Iata == startingPoint, orElseThrow: true);
             }
 
-            if (endingPoint != null)
+            if (!endingPoint.IsNullOrEmpty())
             {
                 _airportRepository.Get(a => a.Iata == endingPoint, orElseThrow: true);
             }
@@ -191,7 +191,7 @@ namespace AirlineCompany3.Service
 
         private List<Flight> SearchByStartingPoint(List<Flight> flights, String startingPoint)
         {
-            if (startingPoint != null)
+            if (!startingPoint.IsNullOrEmpty())
             {
 
                 flights = flights.Where(f => f.StartingPoint.Iata == startingPoint).ToList();
@@ -201,7 +201,7 @@ namespace AirlineCompany3.Service
 
         private List<Flight> SearchByArrivalAirport(List<Flight> flights, String endingPoint)
         {
-            if (endingPoint != null)
+            if (!endingPoint.IsNullOrEmpty())
             {
 
                 flights = flights.Where(f => f.EndingPoint.Iata == endingPoint).ToList();
